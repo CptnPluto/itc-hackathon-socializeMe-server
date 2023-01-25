@@ -15,7 +15,7 @@ userRouter.post(
     checkPassword,
     isUserExist,
     hashPassword,
-    UsersController.userSignup
+    UserController.userSignup
 );
 
 userRouter.post("/login", loginIsUserExist, UserController.userLogin);
