@@ -1,6 +1,21 @@
-const express = require("express");
-const router = express.Router();
+const usersRouter = express.Router();
+const usersController = require("../controllers/usersController");
 
-router.get("/", (req, res) => {
-    res.send("Hello World");
-})
+const {
+  checkPassword,
+  hashPassword,
+  loginIsUserExist,
+  isUserExist,
+} = require("../middleware/usersMiddleware");
+
+usersRouter.post(
+  "/signup",
+  checkPassword,
+  isUserExist,
+  hashPassword,
+  usersController.userSignup
+);
+
+usersRouter.post("/login", loginIsUserExist, usersController.userLogin);
+
+module.exports = usersRouter;
