@@ -28,6 +28,6 @@ userRouter.post(
   userController.userSignup
 );
 
-userRouter.post("/login", loginIsUserExist, UserController.userLogin);
+userRouter.post("/login", loginIsUserExist, userController.userLogin);
 
 module.exports = userRouter;
