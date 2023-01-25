@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const eventsRoutes = require("./routes/eventsRoutes");
-const usersRoutes = require("./routes/userRoutes");
+// const usersRoutes = require("./routes/userRoutes");
 const dbConnection = require("./knex/knex");
 
 const app = express();
