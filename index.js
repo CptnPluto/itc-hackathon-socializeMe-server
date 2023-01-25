@@ -23,6 +23,8 @@ app.use(
 
 app.get("/homeEvents", EventController.getHomeEvents);
 
+app.get("/test", EventController.test);
+
 // Start server with db connection
 dbConnection.migrate.latest().then((migration) => {
     if (migration) {

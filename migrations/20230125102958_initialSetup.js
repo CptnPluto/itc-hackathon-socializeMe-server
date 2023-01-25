@@ -1,7 +1,7 @@
 exports.up = function (knex) {
     return knex.schema
         .createTable("NYC", (table) => {
-            table.increments("id").primary();
+            table.increments("id").primary().unsigned();
             table.string("name");
             table.string("description");
             table.string("venue");
@@ -10,9 +10,10 @@ exports.up = function (knex) {
             table.string("url");
             table.string("artist");
             table.string("price");
+            table.string("genre");
         })
         .createTable("TLV", (table) => {
-            table.increments("id").primary();
+            table.increments("id").primary().unsigned();
             table.string("name");
             table.string("description");
             table.string("venue");
@@ -21,6 +22,7 @@ exports.up = function (knex) {
             table.string("url");
             table.string("artist");
             table.string("price");
+            table.string("genre");
         });
 };
 
