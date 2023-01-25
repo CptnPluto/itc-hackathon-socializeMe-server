@@ -71,6 +71,7 @@ const getUsersEvents = async (req, res) => {
 
 const addToUsersEvents = async (req, res) => {
   req.body.id = req.params.id;
+  req.body.city = req.params.city;
   try {
     const addEvent = await addToUsersEventsModal(req.body);
     res.send({ ok: true });
