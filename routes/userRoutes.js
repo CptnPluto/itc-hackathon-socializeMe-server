@@ -1,21 +1,27 @@
 const express = require("express");
 const userRouter = express.Router();
 
-const UserController = require("../controllers/UserController");
+const userController = require("../controllers/UserController");
 
 const {
-    checkPassword,
-    hashPassword,
-    loginIsUserExist,
-    isUserExist,
+  checkPassword,
+  hashPassword,
+  loginIsUserExist,
+  isUserExist,
+  auth,
 } = require("../middleware/usersMiddleware");
 
+//bdy should contain id(event) and city(string)
+userRouter.post("/usersEvents/", auth, userController.addToUsersEvents);
+
+userRouter.get("/usersEvents", auth, userController.getUsersEvents);
+
 userRouter.post(
-    "/signup",
-    checkPassword,
-    isUserExist,
-    hashPassword,
-    UserController.userSignup
+  "/signup",
+  checkPassword,
+  isUserExist,
+  hashPassword,
+  userController.userSignup
 );
 
 userRouter.post("/login", loginIsUserExist, UserController.userLogin);
