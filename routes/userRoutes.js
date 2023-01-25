@@ -1,8 +1,7 @@
 const express = require("express");
+const userRouter = express.Router();
 
-const UsersController = require("../controllers/UsersController");
-
-const usersRouter = express.Router();
+const UserController = require("../controllers/UserController");
 
 const {
     checkPassword,
@@ -11,7 +10,7 @@ const {
     isUserExist,
 } = require("../middleware/usersMiddleware");
 
-usersRouter.post(
+userRouter.post(
     "/signup",
     checkPassword,
     isUserExist,
@@ -19,6 +18,6 @@ usersRouter.post(
     UsersController.userSignup
 );
 
-usersRouter.post("/login", loginIsUserExist, UsersController.userLogin);
+userRouter.post("/login", loginIsUserExist, UserController.userLogin);
 
-module.exports = usersRouter;
+module.exports = userRouter;

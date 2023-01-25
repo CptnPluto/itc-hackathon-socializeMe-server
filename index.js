@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 const eventsRoutes = require("./routes/eventsRoutes");
-// const usersRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/userRoutes");
 const dbConnection = require("./knex/knex");
 
 const app = express();
@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use("/events", eventsRoutes);
-// app.use("/users", usersRoutes);
+app.use("/users", userRoutes);
 
 // Start server with db connection
 dbConnection.migrate.latest().then((migration) => {
