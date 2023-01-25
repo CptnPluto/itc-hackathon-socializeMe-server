@@ -25,6 +25,7 @@ const hashPassword = (req, res, next) => {
 const loginIsUserExist = async (req, res, next) => {
     const user = await getUserByEmailModel(req.body.email);
     if (!user) {
+        console.log("User not found");
         res.status(400).send("No user with this email");
         return;
     }
@@ -42,17 +43,23 @@ const isUserExist = async (req, res, next) => {
 };
 
 const auth = (req, res, next) => {
-  const { token } = req.cookies;
-  jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
-    if (err) {
-      res.status(500).send(err);
-    } else if (!decoded) {
-      res.status(401).send("Unauthorized");
-    } else {
-      req.body.userId = decoded.id;
-      next();
-    }
-  });
+    const { token } = req.cookies;
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+        if (err) {
+            res.status(500).send(err);
+        } else if (!decoded) {
+            res.status(401).send("Unauthorized");
+        } else {
+            req.body.userId = decoded.id;
+            next();
+        }
+    });
 };
 
-module.exports = { checkPassword, hashPassword, loginIsUserExist, isUserExist, auth };
+module.exports = {
+    checkPassword,
+    hashPassword,
+    loginIsUserExist,
+    isUserExist,
+    auth,
+};

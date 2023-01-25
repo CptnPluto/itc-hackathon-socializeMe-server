@@ -23,6 +23,7 @@ app.use(
             "http://localhost:3000",
             "http://34.238.42.93:8080",
         ],
+        credentials: true,
     })
 );
 
