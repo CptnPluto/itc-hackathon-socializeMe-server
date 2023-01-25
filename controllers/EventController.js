@@ -1,5 +1,7 @@
 const dbConnection = require("../knex/knex");
 
+const { getDSResults } = require("../modals/eventsModels");
+
 const cityEvents = async (req, res) => {
     try {
         const city = req.params.city;
@@ -28,4 +30,14 @@ const test = async (req, res) => {
     }
 };
 
-module.exports = { cityEvents, test };
+const modelSuggestedEvents = async (req, res) => {
+    try {
+        const { eventId, city } = req.params;
+        const result = await getDSResults(eventId, city);
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+module.exports = { cityEvents, modelSuggestedEvents, test };
