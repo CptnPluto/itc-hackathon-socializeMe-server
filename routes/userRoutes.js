@@ -9,7 +9,13 @@ const {
   hashPassword,
   loginIsUserExist,
   isUserExist,
+  auth,
 } = require("../middleware/usersMiddleware");
+
+//bdy should contain id(event) and city(string)
+usersRouter.post("/usersEvents/", auth, usersController.addToUsersEvents);
+
+usersRouter.get("/usersEvents", auth, usersController.getUsersEvents);
 
 usersRouter.post(
   "/signup",
