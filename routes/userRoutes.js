@@ -1,24 +1,24 @@
 const express = require("express");
 
-const usersController = require("../controllers/usersController");
+const UsersController = require("../controllers/UsersController");
 
 const usersRouter = express.Router();
 
 const {
-  checkPassword,
-  hashPassword,
-  loginIsUserExist,
-  isUserExist,
+    checkPassword,
+    hashPassword,
+    loginIsUserExist,
+    isUserExist,
 } = require("../middleware/usersMiddleware");
 
 usersRouter.post(
-  "/signup",
-  checkPassword,
-  isUserExist,
-  hashPassword,
-  usersController.userSignup
+    "/signup",
+    checkPassword,
+    isUserExist,
+    hashPassword,
+    UsersController.userSignup
 );
 
-usersRouter.post("/login", loginIsUserExist, usersController.userLogin);
+usersRouter.post("/login", loginIsUserExist, UsersController.userLogin);
 
 module.exports = usersRouter;

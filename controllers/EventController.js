@@ -1,9 +1,13 @@
 const dbConnection = require("../knex/knex");
 
-const getHomeEvents = async (req, res) => {
-    console.log("Getting home evetns");
-    res.send("Getting home events");
+const cityEvents = async (req, res) => {
+    const city = req.params.city;
+    console.log("City from params: ", city);
+    const result = await dbConnection(city).select("*").limit(5);
+    res.send(result);
 };
+
+
 
 const test = async (req, res) => {
     console.log("Testing");
@@ -13,4 +17,4 @@ const test = async (req, res) => {
     }
 };
 
-module.exports = { getHomeEvents, test };
+module.exports = { cityEvents, test };

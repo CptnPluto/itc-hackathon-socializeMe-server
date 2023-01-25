@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
-// const eventRoutes = require("./routes/eventsRoutes");
+const eventRoutes = require("./routes/eventsRoutes");
 const usersRoutes = require("./routes/userRoutes");
 const cors = require("cors");
 const dbConnection = require("./knex/knex");
@@ -22,10 +22,9 @@ app.use(
     })
 );
 
-// app.use("/events", eventRoutes);
+app.use("/events", eventRoutes);
 app.use("/users", usersRoutes);
 
-app.get("/homeEvents", EventController.getHomeEvents);
 
 // app.get("/test", EventController.test);
 

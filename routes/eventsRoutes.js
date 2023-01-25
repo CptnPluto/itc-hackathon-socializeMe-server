@@ -1,9 +1,11 @@
-// const express = require("express");
-// const eventRouter = express.Router();
-// const eventController = require("../controllers/EventController");
+const express = require("express");
+const eventsRouter = express.Router();
+const dbConnection = require("../knex/knex");
 
-// eventRouter.get("/", (req, res) => {
-//   res.send("Hello World");
-// });
+const EventController = require("../controllers/EventController");
 
-// module.exports = eventRouter;
+
+eventsRouter.get("/cityEvents/:city", EventController.cityEvents);
+
+
+module.exports = eventsRouter;
