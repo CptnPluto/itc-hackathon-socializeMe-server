@@ -1,6 +1,8 @@
 const express = require("express");
-const usersRouter = express.Router();
+
 const usersController = require("../controllers/usersController");
+
+const usersRouter = express.Router();
 
 const {
   checkPassword,
