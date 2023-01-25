@@ -17,6 +17,7 @@ app.use(
         origin: [
             "http://localhost:8080",
             "https://itc-hackathon-socialize-me-client.vercel.app",
+            "http://localhost:3000",
         ],
     })
 );
