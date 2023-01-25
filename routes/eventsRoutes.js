@@ -5,7 +5,8 @@ const dbConnection = require("../knex/knex");
 const EventController = require("../controllers/EventController");
 
 
-eventsRouter.get("/cityEvents/:city", EventController.cityEvents);
+eventsRouter.get("/cityEvents/:city/:category", EventController.cityEvents);
+
 
 
 module.exports = eventsRouter;
