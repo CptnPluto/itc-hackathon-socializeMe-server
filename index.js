@@ -22,7 +22,7 @@ app.use(
 );
 
 app.use("/events", eventsRoutes);
-app.use("/users", usersRoutes);
+// app.use("/users", usersRoutes);
 
 // Start server with db connection
 dbConnection.migrate.latest().then((migration) => {
