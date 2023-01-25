@@ -43,7 +43,12 @@ const isUserExist = async (req, res, next) => {
 };
 
 const auth = (req, res, next) => {
+    if (!req.cookies) {
+        res.status(401).send("Cookies required - no cookies found");
+        return;
+    }
     const { token } = req.cookies;
+    console.log("token: ", token);
     jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
         if (err) {
             res.status(500).send(err);
