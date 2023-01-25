@@ -1,12 +1,11 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
-const eventRoutes = require("./routes/eventsRoutes");
-const usersRoutes = require("./routes/userRoutes");
 const cors = require("cors");
-const dbConnection = require("./knex/knex");
 
-const EventController = require("./controllers/EventController.js");
+const eventsRoutes = require("./routes/eventsRoutes");
+const usersRoutes = require("./routes/userRoutes");
+const dbConnection = require("./knex/knex");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -22,11 +21,8 @@ app.use(
     })
 );
 
-app.use("/events", eventRoutes);
+app.use("/events", eventsRoutes);
 app.use("/users", usersRoutes);
-
-
-// app.get("/test", EventController.test);
 
 // Start server with db connection
 dbConnection.migrate.latest().then((migration) => {
