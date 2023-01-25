@@ -3,6 +3,9 @@ const express = require("express");
 const morgan = require("morgan");
 const userRoutes = require("./routes/userRoutes.js");
 const cors = require("cors");
+const dbConnection = require("./knex/knex");
+
+const EventController = require("./controllers/EventController.js");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -18,10 +21,14 @@ app.use(
     })
 );
 
-app.get("/hello", (req, res) => {
-    res.send("Hello World");
-});
+app.get("/homeEvents", EventController.getHomeEvents);
 
-app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+// Start server with db connection
+dbConnection.migrate.latest().then((migration) => {
+    if (migration) {
+        console.log("Connected to DB", migration);
+        app.listen(PORT, () => {
+            console.log(`Server listening on ${PORT}`);
+        });
+    }
 });
