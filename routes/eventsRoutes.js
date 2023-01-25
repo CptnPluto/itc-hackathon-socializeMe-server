@@ -1,9 +1,8 @@
 const express = require("express");
-const eventRouter = express.Router();
-const eventController = require("../controllers/EventController");
+const eventsRouter = express.Router();
 
-eventRouter.get("/", (req, res) => {
-  res.send("Hello World");
-});
+const EventController = require("../controllers/EventController");
 
-module.exports = eventRouter;
+eventsRouter.get("/cityEvents/:city/:category", EventController.cityEvents);
+
+module.exports = eventsRouter;

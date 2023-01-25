@@ -1,8 +1,7 @@
 const express = require("express");
+const userRouter = express.Router();
 
-const usersController = require("../controllers/usersController");
-
-const usersRouter = express.Router();
+const UserController = require("../controllers/UserController");
 
 const {
   checkPassword,
@@ -17,14 +16,19 @@ usersRouter.post("/usersEvents/", auth, usersController.addToUsersEvents);
 
 usersRouter.get("/usersEvents", auth, usersController.getUsersEvents);
 
-usersRouter.post(
+//bdy should contain id(event) and city(string)
+usersRouter.post("/usersEvents/", auth, usersController.addToUsersEvents);
+
+usersRouter.get("/usersEvents", auth, usersController.getUsersEvents);
+
+userRouter.post(
   "/signup",
   checkPassword,
   isUserExist,
   hashPassword,
-  usersController.userSignup
+  UserController.userSignup
 );
 
-usersRouter.post("/login", loginIsUserExist, usersController.userLogin);
+userRouter.post("/login", loginIsUserExist, UserController.userLogin);
 
-module.exports = usersRouter;
+module.exports = userRouter;
