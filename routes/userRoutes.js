@@ -11,8 +11,12 @@ const {
   auth,
 } = require("../middleware/usersMiddleware");
 
-//bdy should contain id(event) and city(string)
-userRouter.post("/usersEvents/", auth, userController.addToUsersEvents);
+//params should contain id(event) and city(string)
+userRouter.post(
+  "/usersEvents/:id/:city",
+  auth,
+  userController.addToUsersEvents
+);
 
 userRouter.get("/usersEvents", auth, userController.getUsersEvents);
 
