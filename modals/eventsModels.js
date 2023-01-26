@@ -10,10 +10,10 @@ const getEventsByIds = async (ids, city) => {
     }
 };
 
-const getDSResults = async (eventId, city) => {
+const getDSResults = async (eventId, homeCity, targetCity) => {
     try {
         const results = await axios.get(
-            `http://34.238.42.93:3000/get_event?${eventId}&${city}`
+            `http://34.238.42.93:3000/get_event?${eventId}&${homeCity}&${targetCity}`
         );
         arr = results.data;
         const ids = arr.map((result) => {

@@ -32,8 +32,8 @@ const test = async (req, res) => {
 
 const modelSuggestedEvents = async (req, res) => {
     try {
-        const { eventId, city } = req.params;
-        const results = await getDSResults(eventId, city);
+        const { eventId, homeCity, targetCity } = req.params;
+        const results = await getDSResults(eventId, homeCity, targetCity);
         res.send(results);
     } catch (error) {
         console.log(error);
