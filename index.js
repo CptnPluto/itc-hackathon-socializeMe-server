@@ -45,3 +45,5 @@ dbConnection.migrate.latest().then((migration) => {
         });
     }
 });
+
+//Test comment.
