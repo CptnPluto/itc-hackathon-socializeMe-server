@@ -12,10 +12,21 @@ const getEventsByIds = async (ids, city) => {
 
 const getDSResults = async (eventId, city) => {
     try {
-        const result = await axios.get(
+        const results = await axios.get(
             `http://34.238.42.93:3000/get_event?${eventId}&${city}`
         );
-        const events = await getEventsByIds(result.data, city);
+        arr = results.data;
+        const ids = arr.map((result) => {
+            return result.index;
+        });
+        const events = await getEventsByIds(ids, city);
+        events.forEach((e) => {
+            arr.forEach((element) => {
+                if (element.index === e.id) {
+                    e.percentMatch = element.percentage;
+                }
+            });
+        });
         return events;
     } catch (error) {
         console.log(error.message);
