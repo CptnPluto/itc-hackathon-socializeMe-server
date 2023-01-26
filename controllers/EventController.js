@@ -7,9 +7,9 @@ const cityEvents = async (req, res) => {
         const city = req.params.city;
         const reqCategory = req.params.category;
         console.log("City from params: ", city);
-        const result = await dbConnection(city)
-            .where({ category: reqCategory })
-            .limit(5);
+        const result = await dbConnection(city).where({
+            category: reqCategory,
+        });
         res.send(result);
     } catch (error) {
         console.log(error);
