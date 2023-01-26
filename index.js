@@ -22,6 +22,7 @@ app.use(
             "https://itc-hackathon-socialize-me-client.vercel.app",
             "http://localhost:3000",
             "http://34.238.42.93:8080",
+            "http://34.238.42.93:3000",
         ],
         credentials: true,
     })
